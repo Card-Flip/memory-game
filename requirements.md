@@ -35,3 +35,11 @@
 - audio  
 - confetti animation on match made  
 - change difficulty with # of cards  
+
+## Functionality  
+
+- User name  
+- Score tracking  
+- Randomize card order  
+- Display tracked score on main page  
+- Nav buttons for 3 separate pages  
