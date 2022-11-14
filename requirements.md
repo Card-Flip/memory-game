@@ -43,3 +43,12 @@
 - Randomize card order  
 - Display tracked score on main page  
 - Nav buttons for 3 separate pages  
+
+## Data Flow  
+
+1. Main Page w/scoreboard  
+2. Enter player name  
+3. Play Game "button"  
+4. Play until out of trys  
+5. View scoreboard on main page  
+6. View about us page  
