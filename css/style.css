@@ -1,0 +1,20 @@
+header h1{
+  font-size:50px;
+  text-align:center;
+}
+
+#gameBoardHeader{
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  background-color:darkgrey;
+  text-align:center;
+}
+#gameBoardHeader li{
+  display:inline;
+  color:white;
+}
+#gameBoard {
+  margin:auto;
+  font-size: 50px;
+}
