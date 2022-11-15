@@ -14,12 +14,6 @@ let gameBoard = document.getElementById('imgContainer');
 // let imgThree = document.getElementById('imgThree');
 // let imgFour = document.getElementById('imgFour');
 
-let imgOne = document.getElementById('imgOne');
-let imgTwo = document.getElementById('imgTwo');
-let imgThree = document.getElementById('imgThree');
-let imgFour = document.getElementById('imgFour');
-
-
 //-------------Card Constructor-------------//
 function Card(name, fileExtension = 'jpg') {
   this.name = name;
@@ -49,35 +43,31 @@ function imageRandomizer() {
 
 //------------Event Handlers-------------//
 function handleImageClick(event) {
-  let animalClick = event.target.src;
-  for (let i = 0; i < imagesArray.length; i++) {
-    if (imagesArray[i].name === animalClick) {
-      score[i].clicks++;
+  let animalClicked = event.target.src;
+  console.log('image clicked >>>> ', animalClicked);
+  for (let i = 0; i < randomImageArray.length; i++) {
+    if (randomImageArray[i].name === animalClicked) {
+      imagesArray[i].clicks++;
     }
   }
 }
-console.log(score);
+console.log(randomImageArray.clicks);
 
 //-------------Table Render-------------//
 function tableRender() {
 
   imageRandomizer();
 
-  let parentEl = document.getElementById('img-container');
-
   let rowEl = document.createElement('tr');
   let cardEl = document.createElement('td');
   let imageEl = document.createElement('img');
   for (let i = 0; i < imagesArray.length; i++) {
-
-    imageEl.src = imagesArray[i].imagePath;
 
     imageEl.src=imagesArray[i].imagePath;
     // cardEl.innerHTML = imagesArray[i];
 
     cardEl.appendChild(imageEl);
     rowEl.appendChild(cardEl);
-    parentEl.appendChild(rowEl);
   }
   console.log(imagesArray);
 
@@ -115,14 +105,6 @@ function tableRender() {
   imgFourteen.alt = randomImageArray[13].name;
   imgFifteen.alt = randomImageArray[14].name;
   imgSixteen.alt = randomImageArray[15].name;
-
-  imgOne.src=imagesArray[0].imagePath;
-  imgTwo.src=imagesArray[1].imagePath;
-  imgThree.src=imagesArray[2].imagePath;
-  imgFour.src=imagesArray[3].imagePath;
-
-  imgOne.alt=imagesArray[0].name;
-
 }
 
 //-------------Objects-------------//
@@ -150,6 +132,6 @@ imagesArray.push(bunny, cat, chicken, cow, deer, duck, pig, puppy, bunnyTwo, cat
 
 
 tableRender();
-gameBoard.addEventListener('click', handleImageClick);
+gameBoard.addEventListener("click", handleImageClick);
 
-imagesArray.push(bunny,cat,chicken,cow,deer,duck,pig,puppy);
+// imagesArray.push(bunny,cat,chicken,cow,deer,duck,pig,puppy);
