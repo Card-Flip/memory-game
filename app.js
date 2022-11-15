@@ -44,6 +44,7 @@ function imageRandomizer() {
 }
 console.log('random image array', randomImageArray);
 
+
 //------------Event Handlers-------------//
 function handleImageClick(event) {
   let animalClick = event.target.alt;
