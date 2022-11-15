@@ -6,7 +6,9 @@ let score = [];
 
 //-------------DOM-------------//
 // let gameBoard = document.getElementById('gameBoard');
+
 let parentEl = document.getElementById('imgContainer');
+
 let gameBoard = document.getElementById('imgContainer');
 // let imgOne = document.getElementById('imgOne');
 // let imgTwo = document.getElementById('imgTwo');
@@ -47,18 +49,22 @@ console.log('random image array', randomImageArray);
 
 //------------Event Handlers-------------//
 function handleImageClick(event) {
-  let animalClick = event.target.alt;
-  for (let i = 0; i < imagesArray.length; i++) {
-    if (imagesArray[i].name === animalClick) {
-      score[i].clicks++;
+  let animalClicked = event.target.alt;
+  console.log('image clicked >>>> ', animalClicked);
+  for (let i = 0; i < randomImageArray.length; i++) {
+    if (randomImageArray[i].name === animalClicked) {
+      imagesArray[i].clicks++;
     }
   }
 }
-console.log('score', score);
+console.log(randomImageArray.clicks);
+
 
 //-------------Table Render-------------//
 function tableRender() {
+
   imageRandomizer();
+
   let itemIndex = 0;
   while (itemIndex < randomImageArray.length) {
     let rowEl = document.createElement('tr');
@@ -98,5 +104,8 @@ imagesArray.push(bunny, cat, chicken, cow, deer, duck, pig, puppy, bunnyTwo, cat
 
 //-------------Executable Code-------------//
 
+
 tableRender();
-gameBoard.addEventListener('click', handleImageClick);
+gameBoard.addEventListener("click", handleImageClick);
+
+// imagesArray.push(bunny,cat,chicken,cow,deer,duck,pig,puppy);
