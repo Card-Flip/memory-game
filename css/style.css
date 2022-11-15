@@ -22,4 +22,14 @@ header h1 {
 #gameBoard {
   margin:auto;
   font-size: 50px;
+
+
+}
+
+img { 
+  width: 200px;
+  height: 200px;
+  border-radius: 25px;
+
+
 }
