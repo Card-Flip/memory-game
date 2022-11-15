@@ -1,103 +1,13 @@
 'use strict';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //-------------Global Variables-------------//
 let imagesArray = [];
+let score = [];
 
 //-------------DOM-------------//
 // let gameBoard = document.getElementById('gameBoard');
-let parentEl = document.getElementById('img-container');
+// let parentEl = document.getElementById('imgContainer');
+let gameBoard = document.getElementById('imgContainer');
 // let imgOne = document.getElementById('imgOne');
 // let imgTwo = document.getElementById('imgTwo');
 // let imgThree = document.getElementById('imgThree');
@@ -110,53 +20,83 @@ function Card(name, fileExtension = 'jpg') {
   this.clicks = 0;
 }
 
+// ----------Randomizer Function----------//
+function randomIndex() {
+  return Math.floor(Math.random() * imagesArray.length);
+}
+
+//-------------Images Random Function----------//
+let randomImageArray = [];
+function imageRandomizer() {
+  while (randomImageArray.length < 16) {
+    let randomImg = randomIndex();
+    if (!(randomImageArray.includes(imagesArray[randomIndex]))) {
+      randomImageArray.push(imagesArray[randomImg]);
+      // for (let i = 0; i < imagesArray.length; i++) {
+      //   let randomImage = randomIndex();
+      //   if (randomImage) {
+
+    }
+  }
+}
+
+//------------Event Handlers-------------//
+function handleImageClick(event) {
+  let animalClick = event.target.src;
+  for (let i = 0; i < imagesArray.length; i++) {
+    if (imagesArray[i].name === animalClick) {
+      score[i].clicks++;
+    }
+  }
+}
+console.log(score);
+
 //-------------Table Render-------------//
 function tableRender() {
+  imageRandomizer();
   let rowEl = document.createElement('tr');
   let cardEl = document.createElement('td');
   let imageEl = document.createElement('img');
   for (let i = 0; i < imagesArray.length; i++) {
-    imageEl.src=imagesArray[i].imagePath;
-    // cardEl.innerHTML = imagesArray[i];
+    imageEl.src = imagesArray[i].imagePath;
     cardEl.appendChild(imageEl);
     rowEl.appendChild(cardEl);
-    // parentEl.appendChild(rowEl);
   }
   console.log(imagesArray);
 
-  imgOne.src=imagesArray[0].imagePath;
-  imgTwo.src=imagesArray[1].imagePath;
-  imgThree.src=imagesArray[2].imagePath;
-  imgFour.src=imagesArray[3].imagePath;
-  imgFive.src=imagesArray[4].imagePath;
-  imgSix.src=imagesArray[5].imagePath;
-  imgSeven.src=imagesArray[6].imagePath;
-  imgEight.src=imagesArray[7].imagePath;
-  imgNine.src=imagesArray[0].imagePath;
-  imgTen.src=imagesArray[1].imagePath;
-  imgEleven.src=imagesArray[2].imagePath;
-  imgTwelve.src=imagesArray[3].imagePath;
-  imgThirteen.src=imagesArray[4].imagePath;
-  imgFourteen.src=imagesArray[5].imagePath;
-  imgFifteen.src=imagesArray[6].imagePath;
-  imgSixteen.src=imagesArray[7].imagePath;
-  
-  imgOne.alt=imagesArray[0].name;
-  imgTwo.alt=imagesArray[1].name;
-  imgThree.alt=imagesArray[2].name;
-  imgFour.alt=imagesArray[3].name;
-  imgFive.alt=imagesArray[4].name;
-  imgSix.alt=imagesArray[5].name;
-  imgSeven.alt=imagesArray[6].name;
-  imgEight.alt=imagesArray[7].name;
-  imgNine.alt=imagesArray[0].name;
-  imgTen.alt=imagesArray[1].name;
-  imgEleven.alt=imagesArray[2].name;
-  imgTwelve.alt=imagesArray[3].name;
-  imgThirteen.alt=imagesArray[4].name;
-  imgFourteen.alt=imagesArray[5].name;
-  imgFifteen.alt=imagesArray[6].name;
-  imgSixteen.alt=imagesArray[7].name;
+  imgOne.src = randomImageArray[0].imagePath;
+  imgTwo.src = randomImageArray[1].imagePath;
+  imgThree.src = randomImageArray[2].imagePath;
+  imgFour.src = randomImageArray[3].imagePath;
+  imgFive.src = randomImageArray[4].imagePath;
+  imgSix.src = randomImageArray[5].imagePath;
+  imgSeven.src = randomImageArray[6].imagePath;
+  imgEight.src = randomImageArray[7].imagePath;
+  imgNine.src = randomImageArray[8].imagePath;
+  imgTen.src = randomImageArray[9].imagePath;
+  imgEleven.src = randomImageArray[10].imagePath;
+  imgTwelve.src = randomImageArray[11].imagePath;
+  imgThirteen.src = randomImageArray[12].imagePath;
+  imgFourteen.src = randomImageArray[13].imagePath;
+  imgFifteen.src = randomImageArray[14].imagePath;
+  imgSixteen.src = randomImageArray[15].imagePath;
+
+  imgOne.alt = randomImageArray[0].name;
+  imgTwo.alt = randomImageArray[1].name;
+  imgThree.alt = randomImageArray[2].name;
+  imgFour.alt = randomImageArray[3].name;
+  imgFive.alt = randomImageArray[4].name;
+  imgSix.alt = randomImageArray[5].name;
+  imgSeven.alt = randomImageArray[6].name;
+  imgEight.alt = randomImageArray[7].name;
+  imgNine.alt = randomImageArray[8].name;
+  imgTen.alt = randomImageArray[9].name;
+  imgEleven.alt = randomImageArray[10].name;
+  imgTwelve.alt = randomImageArray[11].name;
+  imgThirteen.alt = randomImageArray[12].name;
+  imgFourteen.alt = randomImageArray[13].name;
+  imgFifteen.alt = randomImageArray[14].name;
+  imgSixteen.alt = randomImageArray[15].name;
 }
 
 //-------------Objects-------------//
@@ -169,9 +109,18 @@ let deer = new Card('deer');
 let duck = new Card('duck');
 let pig = new Card('pig');
 let puppy = new Card('puppy');
+let bunnyTwo = new Card('bunny');
+let catTwo = new Card('cat');
+let chickenTwo = new Card('chicken');
+let cowTwo = new Card('cow');
+let deerTwo = new Card('deer');
+let duckTwo = new Card('duck');
+let pigTwo = new Card('pig');
+let puppyTwo = new Card('puppy');
 
-imagesArray.push(bunny,cat,chicken,cow,deer,duck,pig,puppy);
+imagesArray.push(bunny, cat, chicken, cow, deer, duck, pig, puppy, bunnyTwo, catTwo, chickenTwo, cowTwo, deerTwo, duckTwo, pigTwo, puppyTwo);
 
 //-------------Executable Code-------------//
 
 tableRender();
+gameBoard.addEventListener('click', handleImageClick);
