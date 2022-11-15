@@ -6,12 +6,19 @@ let score = [];
 
 //-------------DOM-------------//
 // let gameBoard = document.getElementById('gameBoard');
+
 // let parentEl = document.getElementById('imgContainer');
 let gameBoard = document.getElementById('imgContainer');
 // let imgOne = document.getElementById('imgOne');
 // let imgTwo = document.getElementById('imgTwo');
 // let imgThree = document.getElementById('imgThree');
 // let imgFour = document.getElementById('imgFour');
+
+let imgOne = document.getElementById('imgOne');
+let imgTwo = document.getElementById('imgTwo');
+let imgThree = document.getElementById('imgThree');
+let imgFour = document.getElementById('imgFour');
+
 
 //-------------Card Constructor-------------//
 function Card(name, fileExtension = 'jpg') {
@@ -53,16 +60,27 @@ console.log(score);
 
 //-------------Table Render-------------//
 function tableRender() {
+
   imageRandomizer();
+
+  let parentEl = document.getElementById('img-container');
+
   let rowEl = document.createElement('tr');
   let cardEl = document.createElement('td');
   let imageEl = document.createElement('img');
   for (let i = 0; i < imagesArray.length; i++) {
+
     imageEl.src = imagesArray[i].imagePath;
+
+    imageEl.src=imagesArray[i].imagePath;
+    // cardEl.innerHTML = imagesArray[i];
+
     cardEl.appendChild(imageEl);
     rowEl.appendChild(cardEl);
+    parentEl.appendChild(rowEl);
   }
   console.log(imagesArray);
+
 
   imgOne.src = randomImageArray[0].imagePath;
   imgTwo.src = randomImageArray[1].imagePath;
@@ -97,6 +115,14 @@ function tableRender() {
   imgFourteen.alt = randomImageArray[13].name;
   imgFifteen.alt = randomImageArray[14].name;
   imgSixteen.alt = randomImageArray[15].name;
+
+  imgOne.src=imagesArray[0].imagePath;
+  imgTwo.src=imagesArray[1].imagePath;
+  imgThree.src=imagesArray[2].imagePath;
+  imgFour.src=imagesArray[3].imagePath;
+
+  imgOne.alt=imagesArray[0].name;
+
 }
 
 //-------------Objects-------------//
@@ -122,5 +148,8 @@ imagesArray.push(bunny, cat, chicken, cow, deer, duck, pig, puppy, bunnyTwo, cat
 
 //-------------Executable Code-------------//
 
+
 tableRender();
 gameBoard.addEventListener('click', handleImageClick);
+
+imagesArray.push(bunny,cat,chicken,cow,deer,duck,pig,puppy);
