@@ -9,7 +9,7 @@ function scoreTableRender() {
   let rowEl = document.createElement('tr');
   let data = document.createElement('td');
   let score = document.createElement('td');
-  
+
   data.textContent = retreivedName;
   score.textContent = retreivedScore;
 
