@@ -5,11 +5,13 @@ let imagesArray = [];
 let score = [];
 let firstClick = null;
 let attempts = 5;
+let gameScore = [];
+console.log(gameScore);
 
 //-------------DOM-------------//
 let parentEl = document.getElementById('imgContainer');
 let gameBoard = document.getElementById('imgContainer');
-let scoreBoard = document.getElementById('scoreboard');
+// let scoreBoard = document.getElementById('scoreboard');
 
 //-------------Card Constructor-------------//
 function Card(name, fileExtension = 'jpg') {
@@ -17,6 +19,14 @@ function Card(name, fileExtension = 'jpg') {
   this.imagePath = `img/${name}.${fileExtension}`;
   this.clicks = 0;
 }
+
+// --------------Score Constructor-------------//
+function PlayerScore(name, score) {
+  this.name = localStorage.getItem('userName');
+  this.score = score;
+  console.log(name);
+}
+console.log(PlayerScore);
 
 // ----------Randomizer Function----------//
 function randomIndex() {
@@ -29,14 +39,15 @@ function imageRandomizer() {
   while (randomImageArray.length < 16) {
     let randomImg = randomIndex();
     if (!(randomImageArray.includes(randomImg))) {
-      randomImageArray.push(randomImg); 
+      randomImageArray.push(randomImg);
     }
   }
 }
-console.log('random image array', randomImageArray);
+// console.log('random image array', randomImageArray);
 
 
 //------------Event Handlers-------------//
+
 function handleImageClick(event) {
   let animalClicked = event.target.src;
   console.log('image clicked >>>> ', event.target.id);
@@ -63,12 +74,13 @@ function handleImageClick(event) {
   }
   if (attempts === 0){
     gameBoard.removeEventListener('click', handleImageClick);
-    let gameOver = prompt("Game Over! Please enter your name!");
-    localStorage.setItem("User Name", gameOver);
-    localStorage.setItem("Final Score", score);
-  } 
+    let gameOver = prompt('Game Over! Please enter your name!');
+    localStorage.setItem('userName', gameOver);
+    localStorage.setItem('finalScore', score);
+    // console.log(gameOver);
+    gameScore.push(gameOver, score);
+  }
 }
-
 
 //-------------Table Render-------------//
 function tableRender() {
@@ -89,17 +101,7 @@ function tableRender() {
     }
     parentEl.appendChild(rowEl);
   }
-  console.log('images array', imagesArray);
-}
-
-function scoreTable() {
-  let tableEl = document.getElementById('scoreboard');
-  let rowEl = document.createElement('tr');
-  let userEl = localStorage.getItem('User Name');
-  let scoreEl = localStorage.getItem('Final Score');
-  rowEl.appendChild(userEl);
-  rowEl.appendChild(scoreEl);
-  tableEl.appendChild(rowEl);
+  // console.log('images array', imagesArray);
 }
 
 //-------------Objects-------------//
@@ -126,4 +128,4 @@ imagesArray.push(bunny, cat, chicken, cow, deer, duck, pig, puppy, bunnyTwo, cat
 //-------------Executable Code-------------//
 
 tableRender();
-gameBoard.addEventListener("click", handleImageClick);
+gameBoard.addEventListener('click', handleImageClick);
