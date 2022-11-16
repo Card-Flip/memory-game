@@ -5,20 +5,11 @@ let imagesArray = [];
 let score = [];
 let firstClick = null;
 let attempts = 5;
-// let gameOver = null;
-// console.log(gameOver);
-
 
 //-------------DOM-------------//
-// let gameBoard = document.getElementById('gameBoard');
-
 let parentEl = document.getElementById('imgContainer');
-
 let gameBoard = document.getElementById('imgContainer');
-// let imgOne = document.getElementById('imgOne');
-// let imgTwo = document.getElementById('imgTwo');
-// let imgThree = document.getElementById('imgThree');
-// let imgFour = document.getElementById('imgFour');
+let scoreBoard = document.getElementById('scoreboard');
 
 //-------------Card Constructor-------------//
 function Card(name, fileExtension = 'jpg') {
@@ -38,14 +29,7 @@ function imageRandomizer() {
   while (randomImageArray.length < 16) {
     let randomImg = randomIndex();
     if (!(randomImageArray.includes(randomImg))) {
-      randomImageArray.push(randomImg);
-      // else if (randomImageArray.includes(randomImg)) 
-      // for (let i = 0; i < imagesArray.length; i++) {
-      //   let randomImage = randomIndex();
-      //     if (randomImageArray.includes(imagesArray(randomImg)) || imagesArray.includes(randomImg)) {
-      // }
-      // if (randomImageArray.includes(imagesArray[randomIndex])) { 
-      // }
+      randomImageArray.push(randomImg); 
     }
   }
 }
@@ -80,9 +64,9 @@ function handleImageClick(event) {
   if (attempts === 0){
     gameBoard.removeEventListener('click', handleImageClick);
     let gameOver = prompt("Game Over! Please enter your name!");
-    console.log(gameOver);
+    localStorage.setItem("User Name", gameOver);
+    localStorage.setItem("Final Score", score);
   } 
-  // let scoreBoard = gameOver + score;
 }
 
 
@@ -108,6 +92,16 @@ function tableRender() {
   console.log('images array', imagesArray);
 }
 
+function scoreTable() {
+  let tableEl = document.getElementById('scoreboard');
+  let rowEl = document.createElement('tr');
+  let userEl = localStorage.getItem('User Name');
+  let scoreEl = localStorage.getItem('Final Score');
+  rowEl.appendChild(userEl);
+  rowEl.appendChild(scoreEl);
+  tableEl.appendChild(rowEl);
+}
+
 //-------------Objects-------------//
 
 let bunny = new Card('bunny');
@@ -130,7 +124,6 @@ let puppyTwo = new Card('puppy');
 imagesArray.push(bunny, cat, chicken, cow, deer, duck, pig, puppy, bunnyTwo, catTwo, chickenTwo, cowTwo, deerTwo, duckTwo, pigTwo, puppyTwo);
 
 //-------------Executable Code-------------//
-
 
 tableRender();
 gameBoard.addEventListener("click", handleImageClick);
