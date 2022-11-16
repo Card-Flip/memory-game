@@ -13,12 +13,14 @@ let parentEl = document.getElementById('imgContainer');
 let gameBoard = document.getElementById('imgContainer');
 // let scoreBoard = document.getElementById('scoreboard');
 
+
 //-------------Card Constructor-------------//
 function Card(name, fileExtension = 'jpg') {
   this.name = name;
   this.imagePath = `img/${name}.${fileExtension}`;
   this.clicks = 0;
 }
+
 
 // --------------Score Constructor-------------//
 function PlayerScore(name, score) {
@@ -92,11 +94,22 @@ function tableRender() {
     let rowEl = document.createElement('tr');
     for (let i = 0; i < 4; i++) {
       let cardEl = document.createElement('td');
+      cardEl.className = 'flipcard';
+      let cardInner = document.createElement('div');
+      cardInner.className = 'flipcardinner';
+      let cardFront = document.createElement('div');
+      cardFront.className = 'front';
+      let cardBack = document.createElement('div');
+      cardBack.className = 'back';
       let imageEl = document.createElement('img');
       imageEl.src = imagesArray[randomImageArray[itemIndex]].imagePath;
       imageEl.id = imagesArray[randomImageArray[itemIndex]].name;
       itemIndex++;
       rowEl.appendChild(cardEl);
+      cardEl.appendChild(cardInner);
+      cardInner.appendChild(cardFront);
+      cardFront.appendChild(cardBack);
+      cardBack.appendChild(imageEl);
       cardEl.appendChild(imageEl);
     }
     parentEl.appendChild(rowEl);

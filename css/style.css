@@ -31,5 +31,47 @@ img {
   height: 200px;
   border-radius: 25px;
 
+}
 
+
+
+/* Playing with styling - Deiosha  */
+.flipcard {
+  background-color: transparent;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+}
+
+.flipcardinner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flipcard:hover .flipcardinner {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.front {
+  background-color: #bbb;
+  color: black;
+}
+
+/* Style the back side */
+.back {
+  background-color: pink;
+  color: white;
+  transform: rotateY(180deg);
 }
