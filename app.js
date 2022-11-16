@@ -9,7 +9,6 @@ let gameScore = [];
 console.log(gameScore);
 
 //-------------DOM-------------//
-let parentEl = document.getElementById('imgContainer');
 let gameBoard = document.getElementById('imgContainer');
 // let scoreBoard = document.getElementById('scoreboard');
 
@@ -108,11 +107,11 @@ function tableRender() {
       rowEl.appendChild(cardEl);
       cardEl.appendChild(cardInner);
       cardInner.appendChild(cardFront);
-      cardFront.appendChild(cardBack);
+      cardInner.appendChild(cardBack);
       cardBack.appendChild(imageEl);
-      cardEl.appendChild(imageEl);
+      // cardEl.appendChild(imageEl);
     }
-    parentEl.appendChild(rowEl);
+    gameBoard.appendChild(rowEl);
   }
   // console.log('images array', imagesArray);
 }
