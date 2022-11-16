@@ -1,21 +1,20 @@
 'use strict';
 
 let scoreBoard = document.getElementById('scoreBoard');
-let retreivedName = localStorage.getItem('userName');
-let retreivedScore = localStorage.getItem('finalScore');
-console.log(retreivedName);
+let retreivedScoreBoard = localStorage.getItem('scoreBoard');
+let parsedScoreBoard = JSON.parse(retreivedScoreBoard);
 
 function scoreTableRender() {
-  let rowEl = document.createElement('tr');
-  let data = document.createElement('td');
-  let score = document.createElement('td');
-  
-  data.textContent = retreivedName;
-  score.textContent = retreivedScore;
-
-  scoreBoard.appendChild(rowEl);
-  rowEl.appendChild(data);
-  rowEl.appendChild(score);
+  for (let i = 0; i < parsedScoreBoard.length; i++) {
+    let rowEl = document.createElement('tr');
+    let name = document.createElement('td');
+    let score = document.createElement('td');
+    scoreBoard.appendChild(rowEl);
+    name.textContent = parsedScoreBoard[i].user;
+    score.textContent = parsedScoreBoard[i].score;
+    rowEl.appendChild(name);
+    rowEl.appendChild(score);
+  }
 }
 
 scoreTableRender();

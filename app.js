@@ -6,12 +6,14 @@ let score = [];
 let firstClick = null;
 let attempts = 5;
 let gameScore = [];
-console.log(gameScore);
+let scoreBoardArray = [];
+
+console.log('score', score);
+console.log('gameScore', gameScore);
 
 //-------------DOM-------------//
 let parentEl = document.getElementById('imgContainer');
 let gameBoard = document.getElementById('imgContainer');
-// let scoreBoard = document.getElementById('scoreboard');
 
 //-------------Card Constructor-------------//
 function Card(name, fileExtension = 'jpg') {
@@ -43,8 +45,6 @@ function imageRandomizer() {
     }
   }
 }
-// console.log('random image array', randomImageArray);
-
 
 //------------Event Handlers-------------//
 
@@ -67,18 +67,32 @@ function handleImageClick(event) {
       firstClick = null;
     } else {
       attempts--;
-      // Increase or decrease number of guesses after firstClick is reset to null
     }
-    console.log(score + ' is the score');
-    console.log(attempts + ' attempts left');
   }
-  if (attempts === 0){
+  if (attempts === 0) {
     gameBoard.removeEventListener('click', handleImageClick);
     let gameOver = prompt('Game Over! Please enter your name!');
-    localStorage.setItem('userName', gameOver);
-    localStorage.setItem('finalScore', score);
-    // console.log(gameOver);
-    gameScore.push(score);
+    let newScore = {
+      user: gameOver,
+      score: score,
+    };
+    scoreBoardArray.push(newScore);
+    saveScoreBoard();
+  }
+}
+
+function saveScoreBoard() {
+  let stringifiedScoreBoard = JSON.stringify(scoreBoardArray);
+  localStorage.setItem('scoreBoard', stringifiedScoreBoard);
+}
+
+function retrieveScoreBoard() {
+  let storage = localStorage.getItem('scoreBoard');
+  let parsedStorage = JSON.parse(storage);
+  if (parsedStorage) {
+    scoreBoardArray = parsedStorage;
+  } else {
+    scoreBoardArray = [];
   }
 }
 
@@ -101,7 +115,6 @@ function tableRender() {
     }
     parentEl.appendChild(rowEl);
   }
-  // console.log('images array', imagesArray);
 }
 
 //-------------Objects-------------//
@@ -126,6 +139,6 @@ let puppyTwo = new Card('puppy');
 imagesArray.push(bunny, cat, chicken, cow, deer, duck, pig, puppy, bunnyTwo, catTwo, chickenTwo, cowTwo, deerTwo, duckTwo, pigTwo, puppyTwo);
 
 //-------------Executable Code-------------//
-
+retrieveScoreBoard();
 tableRender();
 gameBoard.addEventListener('click', handleImageClick);
