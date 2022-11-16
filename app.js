@@ -9,7 +9,7 @@ let attempts = 5;
 //-------------DOM-------------//
 let parentEl = document.getElementById('imgContainer');
 let gameBoard = document.getElementById('imgContainer');
-let scoreBoard = document.getElementById('scoreboard');
+// let scoreBoard = document.getElementById('scoreboard');
 
 //-------------Card Constructor-------------//
 function Card(name, fileExtension = 'jpg') {
@@ -63,10 +63,11 @@ function handleImageClick(event) {
   }
   if (attempts === 0){
     gameBoard.removeEventListener('click', handleImageClick);
-    let gameOver = prompt("Game Over! Please enter your name!");
-    localStorage.setItem("User Name", gameOver);
-    localStorage.setItem("Final Score", score);
-  } 
+    let gameOver = prompt('Game Over! Please enter your name!');
+    localStorage.setItem('userName', gameOver);
+    localStorage.setItem('finalScore', score);
+    // console.log(gameOver);
+  }
 }
 
 
@@ -92,15 +93,15 @@ function tableRender() {
   console.log('images array', imagesArray);
 }
 
-function scoreTable() {
-  let tableEl = document.getElementById('scoreboard');
-  let rowEl = document.createElement('tr');
-  let userEl = localStorage.getItem('User Name');
-  let scoreEl = localStorage.getItem('Final Score');
-  rowEl.appendChild(userEl);
-  rowEl.appendChild(scoreEl);
-  tableEl.appendChild(rowEl);
-}
+// function scoreTable() {
+//   let tableEl = document.getElementById('scoreboard');
+//   let rowEl = document.createElement('tr');
+//   let userEl = localStorage.getItem('User Name');
+//   let scoreEl = localStorage.getItem('Final Score');
+//   rowEl.appendChild(userEl);
+//   rowEl.appendChild(scoreEl);
+//   tableEl.appendChild(rowEl);
+// }
 
 //-------------Objects-------------//
 
@@ -126,4 +127,4 @@ imagesArray.push(bunny, cat, chicken, cow, deer, duck, pig, puppy, bunnyTwo, cat
 //-------------Executable Code-------------//
 
 tableRender();
-gameBoard.addEventListener("click", handleImageClick);
+gameBoard.addEventListener('click', handleImageClick);
