@@ -3,6 +3,11 @@
 //-------------Global Variables-------------//
 let imagesArray = [];
 let score = [];
+let firstClick = null;
+let attempts = 5;
+// let gameOver = null;
+// console.log(gameOver);
+
 
 //-------------DOM-------------//
 // let gameBoard = document.getElementById('gameBoard');
@@ -49,15 +54,36 @@ console.log('random image array', randomImageArray);
 
 //------------Event Handlers-------------//
 function handleImageClick(event) {
-  let animalClicked = event.target.alt;
-  console.log('image clicked >>>> ', animalClicked);
+  let animalClicked = event.target.src;
+  console.log('image clicked >>>> ', event.target.id);
   for (let i = 0; i < randomImageArray.length; i++) {
     if (randomImageArray[i].name === animalClicked) {
       imagesArray[i].clicks++;
     }
   }
+  if (animalClicked.target === animalClicked.target) {
+    score++;
+  }
+  if (!firstClick) {
+    firstClick = event.target.id;
+  } else {
+    if (firstClick === event.target.id) {
+      score++;
+      firstClick = null;
+    } else {
+      attempts--;
+      // Increase or decrease number of guesses after firstClick is reset to null
+    }
+    console.log(score + ' is the score');
+    console.log(attempts + ' attempts left');
+  }
+  if (attempts === 0){
+    gameBoard.removeEventListener('click', handleImageClick);
+    let gameOver = prompt("Game Over! Please enter your name!");
+    console.log(gameOver);
+  } 
+  // let scoreBoard = gameOver + score;
 }
-console.log(randomImageArray.clicks);
 
 
 //-------------Table Render-------------//
@@ -72,6 +98,7 @@ function tableRender() {
       let cardEl = document.createElement('td');
       let imageEl = document.createElement('img');
       imageEl.src = imagesArray[randomImageArray[itemIndex]].imagePath;
+      imageEl.id = imagesArray[randomImageArray[itemIndex]].name;
       itemIndex++;
       rowEl.appendChild(cardEl);
       cardEl.appendChild(imageEl);
@@ -107,5 +134,3 @@ imagesArray.push(bunny, cat, chicken, cow, deer, duck, pig, puppy, bunnyTwo, cat
 
 tableRender();
 gameBoard.addEventListener("click", handleImageClick);
-
-// imagesArray.push(bunny,cat,chicken,cow,deer,duck,pig,puppy);
