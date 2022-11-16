@@ -5,6 +5,8 @@ let imagesArray = [];
 let score = [];
 let firstClick = null;
 let attempts = 5;
+let gameScore = [];
+console.log(gameScore);
 
 //-------------DOM-------------//
 let parentEl = document.getElementById('imgContainer');
@@ -18,6 +20,14 @@ function Card(name, fileExtension = 'jpg') {
   this.clicks = 0;
 }
 
+// --------------Score Constructor-------------//
+function PlayerScore(name, score) {
+  this.name = localStorage.getItem('userName');
+  this.score = score;
+  console.log(name);
+}
+console.log(PlayerScore);
+
 // ----------Randomizer Function----------//
 function randomIndex() {
   return Math.floor(Math.random() * imagesArray.length);
@@ -29,14 +39,15 @@ function imageRandomizer() {
   while (randomImageArray.length < 16) {
     let randomImg = randomIndex();
     if (!(randomImageArray.includes(randomImg))) {
-      randomImageArray.push(randomImg); 
+      randomImageArray.push(randomImg);
     }
   }
 }
-console.log('random image array', randomImageArray);
+// console.log('random image array', randomImageArray);
 
 
 //------------Event Handlers-------------//
+
 function handleImageClick(event) {
   let animalClicked = event.target.src;
   console.log('image clicked >>>> ', event.target.id);
@@ -67,9 +78,9 @@ function handleImageClick(event) {
     localStorage.setItem('userName', gameOver);
     localStorage.setItem('finalScore', score);
     // console.log(gameOver);
+    gameScore.push(gameOver, score);
   }
 }
-
 
 //-------------Table Render-------------//
 function tableRender() {
@@ -90,18 +101,8 @@ function tableRender() {
     }
     parentEl.appendChild(rowEl);
   }
-  console.log('images array', imagesArray);
+  // console.log('images array', imagesArray);
 }
-
-// function scoreTable() {
-//   let tableEl = document.getElementById('scoreboard');
-//   let rowEl = document.createElement('tr');
-//   let userEl = localStorage.getItem('User Name');
-//   let scoreEl = localStorage.getItem('Final Score');
-//   rowEl.appendChild(userEl);
-//   rowEl.appendChild(scoreEl);
-//   tableEl.appendChild(rowEl);
-// }
 
 //-------------Objects-------------//
 
