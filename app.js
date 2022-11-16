@@ -78,7 +78,7 @@ function handleImageClick(event) {
     localStorage.setItem('userName', gameOver);
     localStorage.setItem('finalScore', score);
     // console.log(gameOver);
-    gameScore.push(gameOver, score);
+    gameScore.push(score);
   }
 }
 
