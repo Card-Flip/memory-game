@@ -4,7 +4,7 @@ body {
   background-color: cornsilk;
 }
 
-h1{
+h1 {
   padding-top: 20px;
   text-align: center;
 }
@@ -46,7 +46,6 @@ footer {
   margin-top: 50px;
 }
 
-/* LANDING PAGE STYLING */
 
 #gameClick {
   text-decoration: none;
@@ -57,40 +56,72 @@ footer {
   margin: auto;
   border: solid 2px black;
   border-radius: 25px;
-  /* padding-bottom: 10px; */
   padding-top: 40px;
   width: 300px;
   height: 100px;
   margin-top: 25px;
   font-size: 50px;
   text-align: center;
+  color: white;
 }
 
 #play-game:hover {
+  animation-name: spin;
+  animation-duration: 2500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  color: white;
+}
 
+@keyframes spin {
+  0% {
+    background-color: #70ad5e;
+    transform: rotate(0deg);
+  }
+
+  25% {
+    background-color: #D9C931;
+
+  }
+
+  50% {
+    transform: rotate(180deg);
+    background-color: #FAA80E;
+    color: black;
+  }
+
+  75% {
+    background-color: #D9C931;
+
+  }
+
+  100% {
+    transform: rotate(360deg);
+    background-color: #70ad5e;
+  }
 }
 
 /* GAMEBOARD STYLING */
 
-#gameBoardHeader{
-  list-style-type:none;
-  margin:0;
-  padding:0;
-  background-color:darkgrey;
-  text-align:center;
+#gameBoardHeader {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: darkgrey;
+  text-align: center;
 }
 
-#gameBoardHeader li{
-  display:inline;
-  color:white;
+#gameBoardHeader li {
+  display: inline;
+  color: white;
 }
 
 #gameBoard {
-  margin:auto;
+  margin: auto;
   font-size: 50px;
 }
 
-img { 
+img {
   width: 200px;
   height: 200px;
   border-radius: 25px;
@@ -100,11 +131,12 @@ img {
   width: 100%;
 }
 
-#scoreBoard, td{
-  width:75%;
-  margin:auto;
-  border:solid 2px black;
-  text-align:center;
+#scoreBoard,
+td {
+  width: 75%;
+  margin: auto;
+  border: solid 2px black;
+  text-align: center;
 }
 
 .flipcard {
@@ -114,6 +146,7 @@ img {
   border: 1px solid #F1F1F1;
   perspective: 1000px;
 }
+
 .flipcardinner {
   position: relative;
   width: 100%;
@@ -122,24 +155,89 @@ img {
   transition: transform 0.5s;
   transform-style: preserve-3d;
 }
+
 .flipcard:hover .flipcardinner {
   transform: rotateY(180deg);
 }
-.front, .back {
+
+.front,
+.back {
   position: absolute;
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
+
 .front {
   border-radius: 25px;
   background-color: darkgreen;
   color: black;
 }
+
 /* Style the back side */
 .back {
-  /* background-color: pink; */
   color: white;
   transform: rotateY(180deg);
+}
+
+#aboutUsProfiles {
+  text-align: center;
+}
+
+#tyler {
+  display: inline-block;
+  margin-bottom: 30px;
+  background-color: darkolivegreen;
+  border-radius: 25px;
+  width: 75%;
+}
+
+#tyler img {
+  float: left;
+}
+
+#tyler p {
+  margin-top: 90px;
+  margin-left: 230px;
+  color: white;
+}
+
+#deiosha {
+  display: inline-block;
+  margin-bottom: 30px;
+  background-color: lavenderblush;
+  border-radius: 25px;
+  width: 75%;
+}
+
+#deiosha img {
+  float: left;
+}
+
+#deiosha p {
+  margin-top: 90px;
+  margin-left: 230px;
+}
+
+#john {
+  display: inline-block;
+  margin-bottom: 30px;
+  background-color: rgb(123, 211, 240);
+  border-radius: 25px;
+  width: 75%;
+}
+
+#john img {
+  float: left;
+}
+
+#john p {
+  margin-top: 90px;
+  margin-left: 230px;
+}
+
+#photo-credit {
+  margin-left: 25px;
+  margin-top: 30px;
 }
