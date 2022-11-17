@@ -53,7 +53,7 @@ img {
   transform-style: preserve-3d;
 }
 
-.flipcard:hover .flipcardinner {
+.flipcar:hover .flipcardinner{
   transform: rotateY(180deg);
 }
 

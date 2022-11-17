@@ -50,8 +50,9 @@ function imageRandomizer() {
 //------------Event Handlers-------------//
 
 function handleImageClick(event) {
-  let animalClicked = event.target.src;
+  let animalClicked = event.target.name;
   console.log('image clicked >>>> ', event.target.id);
+  console.log(event);
   for (let i = 0; i < randomImageArray.length; i++) {
     if (randomImageArray[i].name === animalClicked) {
       imagesArray[i].clicks++;
@@ -73,7 +74,7 @@ function handleImageClick(event) {
     console.log(score + ' is the score');
     console.log(attempts + ' attempts left');
   }
-  if (attempts === 0){
+  if (attempts === 0) {
     gameBoard.removeEventListener('click', handleImageClick);
     let gameOver = prompt('Game Over! Please enter your name!');
     localStorage.setItem('userName', gameOver);
@@ -82,10 +83,13 @@ function handleImageClick(event) {
     gameScore.push(gameOver, score);
   }
 }
+// function handleClick(event)
+//   console.log(event.target + 'handleClick function');
+//   event.target.toggleClass('hover');
+//
 
 //-------------Table Render-------------//
 function tableRender() {
-
   imageRandomizer();
 
   let itemIndex = 0;
@@ -98,6 +102,8 @@ function tableRender() {
       cardInner.className = 'flipcardinner';
       let cardFront = document.createElement('div');
       cardFront.className = 'front';
+      // cardFront.name = imagesArray[randomImageArray[itemIndex]].name;
+      // console.log(cardFront.name);
       let cardBack = document.createElement('div');
       cardBack.className = 'back';
       let imageEl = document.createElement('img');
@@ -109,10 +115,17 @@ function tableRender() {
       cardInner.appendChild(cardFront);
       cardInner.appendChild(cardBack);
       cardBack.appendChild(imageEl);
+    //   cardInner.addEventListener('click', function () {
+    //     cardInner.classList.toggle('is-flipped');
+    //   });
       // cardEl.appendChild(imageEl);
-    }
+
+    //   cardEl.addEventListener('click', handleClick);
+    // }
     gameBoard.appendChild(rowEl);
   }
+
+
   // console.log('images array', imagesArray);
 }
 
