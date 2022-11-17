@@ -1,5 +1,5 @@
 'use strict';
-
+// testing
 //-------------Global Variables-------------//
 let imagesArray = [];
 let score = [];
@@ -12,8 +12,8 @@ console.log('score', score);
 console.log('gameScore', gameScore);
 
 //-------------DOM-------------//
-let parentEl = document.getElementById('imgContainer');
 let gameBoard = document.getElementById('imgContainer');
+let parentEl = document.getElementById('imgContainer');
 
 //-------------Card Constructor-------------//
 function Card(name, fileExtension = 'jpg') {
@@ -97,24 +97,34 @@ function retrieveScoreBoard() {
 }
 
 //-------------Table Render-------------//
+
 function tableRender() {
-
   imageRandomizer();
-
   let itemIndex = 0;
   while (itemIndex < randomImageArray.length) {
     let rowEl = document.createElement('tr');
     for (let i = 0; i < 4; i++) {
       let cardEl = document.createElement('td');
+      cardEl.className = 'flipcard';
+      let cardInner = document.createElement('div');
+      cardInner.className = 'flipcardinner';
+      let cardFront = document.createElement('div');
+      cardFront.className = 'front';
+      let cardBack = document.createElement('div');
+      cardBack.className = 'back';
       let imageEl = document.createElement('img');
       imageEl.src = imagesArray[randomImageArray[itemIndex]].imagePath;
       imageEl.id = imagesArray[randomImageArray[itemIndex]].name;
       itemIndex++;
       rowEl.appendChild(cardEl);
-      cardEl.appendChild(imageEl);
+      cardEl.appendChild(cardInner);
+      cardInner.appendChild(cardFront);
+      cardInner.appendChild(cardBack);
+      cardBack.appendChild(imageEl);
     }
     parentEl.appendChild(rowEl);
   }
+  // console.log('images array', imagesArray);
 }
 
 //-------------Objects-------------//
