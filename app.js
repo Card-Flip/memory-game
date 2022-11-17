@@ -1,5 +1,5 @@
 'use strict';
-// testing
+
 //-------------Global Variables-------------//
 let imagesArray = [];
 let score = [];
@@ -7,9 +7,6 @@ let firstClick = null;
 let attempts = 5;
 let gameScore = [];
 let scoreBoardArray = [];
-
-console.log('score', score);
-console.log('gameScore', gameScore);
 
 //-------------DOM-------------//
 let gameBoard = document.getElementById('imgContainer');
@@ -26,9 +23,7 @@ function Card(name, fileExtension = 'jpg') {
 function PlayerScore(name, score) {
   this.name = localStorage.getItem('userName');
   this.score = score;
-  console.log(name);
 }
-console.log(PlayerScore);
 
 // ----------Randomizer Function----------//
 function randomIndex() {
@@ -124,7 +119,6 @@ function tableRender() {
     }
     parentEl.appendChild(rowEl);
   }
-  // console.log('images array', imagesArray);
 }
 
 //-------------Objects-------------//
